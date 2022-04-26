@@ -1,0 +1,115 @@
+ul li a{
+    color: #000 !important;
+}
+.card{
+    /* width: 60%;
+    margin-left: 20%; */
+    position: relative;
+    z-index: 1;
+    margin-top: -284px;
+}
+
+.Auth_form_link{
+    display: inline-block;
+    max-width: 100%;
+    margin-left:27%;
+    font-size: .8rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 24px;
+    color: #00788c;
+    text-decoration: none;
+    margin-top: 25px;
+}
+
+.Auth_form_link:hover{
+    color: #00788c;
+}
+
+.title_form{
+    font-family: Proxima Nova,sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.7;
+    color: #212121;
+    margin-bottom: 8px;
+}
+
+.Auth_form_button_email button, .Auth_form_button_facebook button, .Auth_form_button_google button{
+    text-align: left;
+    width: 100%;
+    background-color: #8E4089;
+    min-height: 48px;
+    /* text-align: left; */
+    font-size: 18px;
+    padding-right: 8%;
+    border-color: #8E4089;
+    font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    /* font-size: 14px; */
+    color: rgb(255, 255, 255);
+    line-height: 18px;
+    text-transform: none;
+    opacity: 0.8;
+}
+
+.Auth_form_button_facebook button{
+    background-color:#3B5998 !important;
+    border-color: #3B5998;
+}
+
+.Auth_form_button_google button{
+    background-color: #fff;
+    border-color: #000;
+    color: #000;
+}
+
+.Auth_form_button_email button:hover, .Auth_form_button_facebook button:hover, .Auth_form_button_google button:hover {
+    cursor: pointer;
+    -webkit-box-align: center;
+    /* align-items: center;
+    display: flex; */
+    flex-direction: row;
+    padding: 7px 16px;
+    border: 2px solid rgb(142, 64, 137);
+    border-radius: 4px;
+    background-color: #8E4089;
+    font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    /* font-size: 14px; */
+    color: rgb(255, 255, 255);
+    line-height: 18px;
+    text-transform: none;
+    opacity: 1;
+}
+
+.Auth_form_button_google button:hover{
+    background-color: #dbd9d9;
+    color: #000;
+    border-color: #000;
+}
+
+.Auth_form_button_facebook button:hover{
+    background-color: #2D4373;
+    border-color: #2D4373;
+}
+
+.forgette_password a{
+    font-weight: 700;
+    color: #00788c;
+    font-size: .8rem;
+    cursor: pointer;
+    text-decoration: none;
+
+}
+
+.Auth_form_icone_facebook, .Auth_form_icone_google{
+    background-size: cover;
+    width: 18px;
+    height: 18px;
+    margin: 0 10px 0 3px;
+    flex-shrink: 0;
+}
+
+
+

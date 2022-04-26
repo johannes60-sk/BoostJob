@@ -1,0 +1,174 @@
+
+body{
+    background-color: #f2f2f2;
+  
+}
+
+#header1{
+    background-color: white; 
+}
+
+.inscription_btn{
+    background-color: #57378A !important;
+    border-color: #57378A !important;
+}
+
+.connexion_btn{
+    border-color: rgb(217, 219, 233) !important;
+    color: #57378A;
+    background-color: transparent;
+}
+
+.connexion_btn:hover{
+    background-color: #E9E7F7 !important;
+    color: #57378A;
+
+}
+
+#second_header{
+    background-color: #F2F2F2 !important;
+}
+
+#hero{
+    background-color: #230939;
+    color: white;
+    padding-top: 6rem!important;
+
+}
+
+.featured-label{
+    background: #676767;
+    color: #fff;
+    font-size: 0.6666em;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: absolute;
+    top: 75px;
+    right: -5px;
+    padding: 3px 10px;
+    width: 150px;
+    text-align: center;
+    -webkit-transform-origin: bottom right;
+    -moz-transform-origin: bottom right;
+    transform-origin: bottom right;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.border_bottom{
+
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    padding-top: 15px;
+    font-size: 1em;
+    
+}
+
+.s010 {
+    min-height: 0vh !important;
+    background: none !important;
+}
+
+#search_form {
+    max-width: 85% !important;
+}
+
+.s010 form .inner-form .input-field input {
+
+    background: linear-gradient(to right, #230939 0%, #57378A 28%, #C1BAEB 91%, #C1BAEB 100%) !important;
+    /* background: linear-gradient(to right, #230939 0%, #57378A 28%, #ff4b5a 91%, #ff4b5a 100%) !important; */
+
+}
+
+
+
+.featured-label {
+    background: #676767;
+    color: #fff;
+    font-size: 0.6666em;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: absolute;
+    top: 113px;
+    right: 12px;
+    padding: 3px 10px;
+    width: 203px;
+    text-align: center;
+    -webkit-transform-origin: bottom right;
+    -moz-transform-origin: bottom right;
+    transform-origin: bottom right;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(35deg);
+}
+
+li.part-time {
+    color: #f08d3c;
+    border-color: #f08d3c;
+}
+
+li.job-type {
+    list-style: none;
+    font-size: 0.7778em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    display: inline-block;
+    border: 1px solid #2ace5e;
+    border-radius: 40px;
+    padding: 5px 20px;
+    color: #2ace5e;
+    margin-top: 10px;
+    cursor: default;
+}
+
+.compagny_adresse{
+    font-size: 0.8888em;
+    line-height: 1.44em;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.salary, .compagny_adresse{
+    font-size: 0.8888em;
+    line-height: 1.44em;
+    font-weight: 400;
+    margin-bottom: 10px;
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.bi-cash-coin, .bi-geo-alt{
+    width: 18px;
+    height: 18px;
+    vertical-align: text-top;
+    font-weight: 900;
+    color: #2ace5e;
+}
+
+#section_job{
+    margin-bottom: 81px;
+}
+
+.bg_call_to_action_section {
+    margin-top: 81px;
+    background-color: #3D2462 !important;
+}
+
+.job_title{
+    text-decoration: none !important;
+    color: #000;
+}
+
+.job_title:hover{
+    color: #57378A;
+}
+
+#footer{
+    background-color: #230939 !important;
+    color: #fff;
+    width: 100%;
+    margin-top: 100px;
+    /* position: absolute; */
+    bottom: 0;
+}
