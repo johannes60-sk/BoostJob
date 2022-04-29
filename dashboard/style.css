@@ -2921,7 +2921,7 @@ ul.mailbox-list li:hover a, ul.h-list li:hover a {
 }
 .alert-title.dropzone-custom-sys h2, .download-custom h2, .alert-title h2, .code-editor-single h2 {
     font-size: 20px;
-    color: #444;
+    color: #fff;
 }
 .alert-title.dropzone-custom-sys p, .download-custom p, .alert-title p, .sparkline-content p {
     font-size: 14px;

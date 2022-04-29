@@ -10,13 +10,20 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
   <link rel="stylesheet" href="../css/index.css">
   <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../css/view_job_post.css">
   <link rel="stylesheet" href="../css/inscription_and_connexion.css">
   <link href="../css/search.css" rel="stylesheet" />
+
   <title>Inscription</title>
 
   <style>
     ul li a {
       color: #fff !important;
+    }
+
+    .postuler_btn:hover {
+
+      color: #230939 !important;
     }
   </style>
 </head>

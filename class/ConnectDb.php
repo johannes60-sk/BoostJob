@@ -23,7 +23,7 @@
           }
       }
 
-      public function query($query, $data = false){
+      public function query($query, $data = []){
           if($data){
 
             $req = $this->db->prepare($query);

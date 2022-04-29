@@ -1,21 +1,30 @@
-<?php require_once('header.php'); ?>
+<?php 
+require_once('header.php'); 
+require_once('../class/ConnectDb.php');
+require_once('../class/DatabaseAuth.php');
+?>
 
-<style>
-    .postuler_btn:hover {
+<?php 
+    if(isset($_GET)){
+        if(!empty($_GET['job_id'])){
 
-        color: #230939 !important;
-    }
-</style>
+            $id = $_GET['job_id'];
+
+            $db = new ConnectDb();
+
+            $job = $db->query("SELECT * FROM jobs WHERE id = :id", ['id' => $id])->fetch();
+
+        }else header("Location: ../index.php");
+    }else header("Location: ../index.php");
+
+?>
+
 
 <div class=" pt-4 pb-4 text-center text-white" style="background-color: #230939 !important;">
-    <!-- <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-    <h1 class="display-5 fw-bold">JOB NAME</h1>
+    <h1 class="display-5 fw-bold"><?= $job['nom'] ?></h1>
     <div class="col-lg-6 mx-auto">
-        <!-- <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p> -->
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a href="#" class="btn btn-outline-primary me-2 connexion_btn text-white postuler_btn">Postuler</a>
-            <!-- <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Postuler</button> -->
-            <!-- <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button> -->
+            <a href="postule.php?job_name=<?=$job['nom']?>&id=<?=$id ?>" class="btn btn-outline-primary me-2 connexion_btn text-white postuler_btn">Postuler</a>
         </div>
     </div>
     <div class="container pt-4" style="margin-bottom: -21px;">
@@ -29,13 +38,45 @@
                     <div class="col-md-1 col-sm-1 col-xs-12"><i class="bi bi-linkedin fs-4"></i></div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
-<h1>Bienvenu</h1>
+<!-- Detail Entreprise-->
 
+<div class="container_fluid">
+    <div class="card mt-5">
+        <h5 class="card-header">Profil de l´entreprise</h5>
+        <div class="card-body">
+            <p class="card-text">Entreprise <span style="padding-left:170px">:&nbsp;&nbsp;&nbsp;&nbsp; <?= $job['nom_entreprise']?></span></p>
+            <p class="card-text">Site Internet <span style="padding-left: 154px;">:&nbsp;&nbsp;&nbsp;&nbsp; <?= $job['url_site_entreprise']?></span></p>
+            <p class="card-text">Ville <span style="padding-left: 218px;">:&nbsp;&nbsp;&nbsp;&nbsp; <?= $job['localisation']?></span></p>
+            <p class="card-text">Pays <span style="padding-left: 219px;">:&nbsp;&nbsp;&nbsp;&nbsp; Benin</span></p>
+            <p class="card-text">Secteur d'activite <span style="padding-left: 120px;">:&nbsp;&nbsp;&nbsp;&nbsp; <?= $job['catégorie']?></span></p>
+            <p class="card-text mb-5">Slogan <span style="padding-left: 202px;">:&nbsp;&nbsp;&nbsp;&nbsp;  <?= $job['slogan']?></span></p>
+            <div class="border_bottom_div"></div>
+            <h5 class="mt-4">Description de l'entreprise</h5>
+            <p class="card-text"><?= $job['description']?></p>
+        </div>
+    </div>
+</div>
+
+<!-- Detail annonce -->
+
+<div class="container_fluid">
+    <div class="card mt-5">
+        <h5 class="card-header">Détails de l'annonce</h5>
+        <div class="card-body">
+            <p class="card-text fw-bold">Poste proposé : Post</p>
+            <p class="card-text"><?= $job['description']?></p>
+        </div>
+    </div>
+</div>
+
+<div class="d-grid mt-5 justify-content-sm-center">
+    <a href="postule.php?job_name=<?= $job['nom'] ?>&id=<?=$id ?>" class="btn btn-outline-primary me-2  text-white postuler_btn_bottom">Postuler</a>
+    
+</div>
 
 
 <?php require_once('footer.php'); ?>

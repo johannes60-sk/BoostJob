@@ -388,7 +388,6 @@ if (!empty($_POST)) {
                                 <input type="file" class="custom-file-input" id="logo" name="logo">
                                 <label class="custom-file-label " for="logo">Logo</label>
                               </div>
-
                             </div>
                           </div>
 

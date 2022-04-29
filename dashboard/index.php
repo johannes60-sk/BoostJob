@@ -1,3 +1,26 @@
+<!-- <?php
+
+        require_once('../class/ConnectDb.php');
+
+        $db = new ConnectDb();
+
+        if (!empty($_GET['id'])) {
+            $job = [
+                'id' => intval($_GET['id']),
+            ];
+
+            $req_delete = $db->query('DELETE FROM candidature WHERE id=:id', $job);
+
+            echo "<div class='alert alert-success'>Suppression réussie!</div>";
+        }
+
+        ?>
+ -->
+
+
+
+
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -16,6 +39,7 @@
     <!-- Bootstrap CSS
 		============================================ -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
     <!-- Bootstrap CSS
 		============================================ -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -57,6 +81,7 @@
     <!-- style CSS
 		============================================ -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
     <!-- responsive CSS
@@ -72,6 +97,51 @@
         .b-logo {
             font-size: 20px;
             margin-right: 45px;
+
+        }
+
+        .alert-title h2,
+        .alert-title p {
+
+            letter-spacing: 1px;
+            font-weight: 500;
+            font-size: 15px;
+
+        }
+
+        .job_name {
+            font-size: 20px !important;
+        }
+
+        .alert-title p {
+            color: #a78e8e;
+            font-weight: 900 !important;
+        }
+
+        .see_more_btn {
+
+            /* background-color: #a78e8e !important; */
+            border-color: #a78e8e !important;
+            font-weight: bold;
+            background-color: transparent;
+            position: absolute;
+            top: 115px;
+            right: 126px;
+        }
+
+        .delete_btn {
+            border-color: #a78e8e !important;
+            font-weight: bold;
+            background-color: transparent;
+            position: absolute;
+            top: 115px;
+            right: 23px;
+        }
+
+        .title {
+            color: white;
+            text-align: center;
+            margin-bottom: 32px;
         }
     </style>
 </head>
@@ -341,8 +411,10 @@
         </div>
         <!-- Charts Start-->
 
-        <?php
 
+
+        <?php
+        // var_dump( $_SERVER['PHP_SELF']); die();
         if (isset($_GET['page'])) {
 
             switch ($_GET['page']) {
@@ -352,19 +424,52 @@
         ?>
                     <div class="charts-area mg-tb-15">
                         <div class="container-fluid">
+                            <h2 class="title">Suivi de mes candidatures</h2>
+
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="charts-single-pro responsive-mg-b-30">
-                                        <div class="alert-title">
-                                            <h2>Basic Line Chart</h2>
-                                            <p>A bar chart provides a way of showing data values. It is sometimes used to show trend data. we create a bar chart for a single dataset and render that in our page.</p>
-                                        </div>
-                                        <div id="basic-chart">
+                                <?php
+
+                                require_once('../class/ConnectDb.php');
+
+                                $db = new ConnectDb();
+
+                                $job = $db->query("SELECT * FROM candidature");
+
+                                while ($job_candidate = $job->fetch()) {
+
+
+                                ?>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="margin-bottom: 20px; position: relative;">
+                                        <div class="charts-single-pro responsive-mg-b-30 " id="block_job">
+                                            <div class="alert-title ">
+                                                <h2 class="job_name"><?= $job_candidate['nom'] ?></h2>
+                                                <h2 class="text-white"><?= $job_candidate['nom_entreprise'] ?></h2>
+                                                <p class="text-muted text-white" style="font-size: 15px; margin-bottom: 9px;"> <i class="bi bi-geo-alt fs-5 p-2"></i><?= $job_candidate['localisation'] ?></p>
+                                                <p class="text-muted text-white" style="font-size: 15px; margin-bottom: 0;"><i class="bi bi-cash-coin fs-5 p-2"></i><?= $job_candidate['salaire'] ?></p>
+                                            </div>
+
+                                            <a href="../pages/view_job_post.php?job_id=<?= $job_candidate['id_candidature'] ?>" class="btn btn-primary me-2 see_more_btn offset-md-6">Plus</a>
+                                            <a href="#" class="btn btn-primary me-2 delete_btn offset-md-6" id="delete_btn">Supprimer</a>
+
+                                            <?php
+
+                                            ?>
+
+                                            <?php
+
+                                            ?>
+
+                                            <!-- <div id="basic-chart">
                                             <canvas id="basiclinechart"></canvas>
+                                        </div> -->
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                <?php
+                                }
+                                ?>
+
+                                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="charts-single-pro">
                                         <div class="alert-title">
                                             <h2>Line Chart Multi Axis</h2>
@@ -447,41 +552,54 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div> -->
                             </div>
                         </div>
-                    </div>
-                <?php
+                    <?php
                     break;
 
                 case 'Abonnement':
 
-                ?>
-                    <h1 class="text-center" style="color:#fff;">Page Abonnement</h1>
-                <?php
+                    ?>
+                        <h1 class="text-center" style="color:#fff;">Page Abonnement</h1>
+                    <?php
                     break;
                 case 'Recruter':
 
-                ?>
-                    <h1 class="text-center" style="color:#fff;">Page Recruteur</h1>
-            <?php
+                    ?>
+                        <h1 class="text-center" style="color:#fff;">Page Recruteur</h1>
+                <?php
             }
+                ?>
 
-            ?>
-
-        <?php
+            <?php
 
         } else {
 
-        ?>
-            <h2 class="text-center" style="color: #fff ;">Bienvenu sur votre Dashboard</h2>
-        <?php
+            ?>
+                <h2 class="text-center" style="color: #fff ;">Bienvenu sur votre Dashboard</h2>
+            <?php
 
         }
 
-        ?>
+            ?>
 
-        <!-- Charts End-->
-        <!-- <div class="footer-copyright-area">
+            <script src="../js/jquerry.js"></script>
+
+            <script>
+                $('#delete_btn').click(function(e) {
+                    e.preventDefault();
+
+                    let tempSup = confirm('Voulez-vous vraiment supprimé cette tâche ? ');
+
+                    if (tempSup) {
+                        location.href = this.href
+                    }
+                })
+            </script>
+
+            <!-- Charts End-->
+            <!-- <div class="footer-copyright-area">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
@@ -492,63 +610,64 @@
                 </div>
             </div>
         </div> -->
-    </div>
-    <!-- jquery
+                    </div>
+                    <!-- jquery
 		============================================ -->
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
-    <!-- bootstrap JS
+                    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+                    <script src="../js/jquerry.js"></script>
+                    <!-- bootstrap JS
 		============================================ -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- wow JS
+                    <script src="js/bootstrap.min.js"></script>
+                    <!-- wow JS
 		============================================ -->
-    <!-- <script src="js/wow.min.js"></script> -->
-    <!-- price-slider JS
+                    <!-- <script src="js/wow.min.js"></script> -->
+                    <!-- price-slider JS
 		============================================ -->
-    <!-- <script src="js/jquery-price-slider.js"></script> -->
-    <!-- meanmenu JS
+                    <!-- <script src="js/jquery-price-slider.js"></script> -->
+                    <!-- meanmenu JS
 		============================================ -->
-    <script src="js/jquery.meanmenu.js"></script>
-    <!-- owl.carousel JS
+                    <script src="js/jquery.meanmenu.js"></script>
+                    <!-- owl.carousel JS
 		============================================ -->
-    <!-- <script src="js/owl.carousel.min.js"></script> -->
-    <!-- sticky JS
+                    <!-- <script src="js/owl.carousel.min.js"></script> -->
+                    <!-- sticky JS
 		============================================ -->
-    <script src="js/jquery.sticky.js"></script>
-    <!-- scrollUp JS
+                    <script src="js/jquery.sticky.js"></script>
+                    <!-- scrollUp JS
 		============================================ -->
-    <!-- <script src="js/jquery.scrollUp.min.js"></script> -->
-    <!-- mCustomScrollbar JS
+                    <!-- <script src="js/jquery.scrollUp.min.js"></script> -->
+                    <!-- mCustomScrollbar JS
 		============================================ -->
-    <script src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/scrollbar/mCustomScrollbar-active.js"></script>
-    <!-- metisMenu JS
+                    <script src="js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+                    <script src="js/scrollbar/mCustomScrollbar-active.js"></script>
+                    <!-- metisMenu JS
 		============================================ -->
-    <script src="js/metisMenu/metisMenu.min.js"></script>
-    <script src="js/metisMenu/metisMenu-active.js"></script>
-    <!-- sparkline JS
+                    <script src="js/metisMenu/metisMenu.min.js"></script>
+                    <script src="js/metisMenu/metisMenu-active.js"></script>
+                    <!-- sparkline JS
 		============================================ -->
-    <!-- <script src="js/sparkline/jquery.sparkline.min.js"></script>
+                    <!-- <script src="js/sparkline/jquery.sparkline.min.js"></script>
     <script src="js/sparkline/jquery.charts-sparkline.js"></script> -->
-    <!-- calendar JS
+                    <!-- calendar JS
 		============================================ -->
-    <!-- <script src="js/calendar/moment.min.js"></script>
+                    <!-- <script src="js/calendar/moment.min.js"></script>
     <script src="js/calendar/fullcalendar.min.js"></script>
     <script src="js/calendar/fullcalendar-active.js"></script> -->
-    <!-- float JS
+                    <!-- float JS
 		============================================ -->
-    <!-- <script src="js/flot/jquery.flot.js"></script>
+                    <!-- <script src="js/flot/jquery.flot.js"></script>
     <script src="js/flot/jquery.flot.resize.js"></script>
     <script src="js/flot/curvedLines.js"></script>
     <script src="js/flot/flot-active.js"></script> -->
-    <!-- plugins JS
+                    <!-- plugins JS
 		============================================ -->
-    <!-- <script src="js/plugins.js"></script> -->
-    <!-- main JS
+                    <!-- <script src="js/plugins.js"></script> -->
+                    <!-- main JS
 		============================================ -->
-    <script src="js/main.js"></script>
-    <!-- Bootstrap JS
+                    <script src="js/main.js"></script>
+                    <!-- Bootstrap JS
 		============================================ -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 
 </html>

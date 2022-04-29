@@ -57,7 +57,7 @@
                         <!-- <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
                     </ul>
                     <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                        <li><a href="#" class="nav-link px-2 link-dark">Espace recruteur <i class="bi bi-arrow-right-short" style="color:  rgb(110, 70, 174) !important;"></i></a></li>
+                        <li><a href="Espace_recruteur" class="nav-link px-2 link-dark">Espace recruteur <i class="bi bi-arrow-right-short" style="color:  rgb(110, 70, 174) !important;"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -171,9 +171,7 @@
 
                 <?php
 
-                if (isset($_GET['action'])) { //admin/pages/Admin_dashboard.php
-
-                    if ($_GET['action'] == 'post_new_job') {
+                if (isset($_GET['action']) AND $_GET['action'] == 'post_new_job'){ //admin/pages/Admin_dashboard.php
 
                         require_once('class/ConnectDb.php');
 
@@ -183,14 +181,14 @@
 
                         // $jobs_id = $db->lastInsertId();
 
-                        while ($job = $jobs->fetch()) {
+                        while ($job = $jobs->fetch()){
                 ?>
                             <div class="col-md-6 mb-4" id="new_job">
                                 <div class="h-100 p-5 bg-light border rounded-3" style="position: relative !important;">
                                     <div class="row">
                                         <div class="col-md-2">LOGO</div>
                                         <div class="col-md-10">
-                                            <a href="pages/view_job_post.php?job_id=<?= $job['id']?>" class="job_title">
+                                            <a href="pages/view_job_post.php?job_id=<?= $job['id'] ?>" class="job_title">
                                                 <h2><?= $job['nom'] ?></h2>
                                             </a>
                                             <p class="text-muted"><?= $job['nom_entreprise'] ?></p>
@@ -212,13 +210,52 @@
                                     </div>
                                 </div>
                             </div>
-                        <?php
-
-                        }
-                        ?>
-                <?php
+                       
+                    <?php
 
                     }
+                } else {
+
+                    require_once('class/ConnectDb.php');
+
+                    $db = new ConnectDb();
+
+                    $jobs = $db->query("SELECT * FROM jobs ");
+
+                    while ($job = $jobs->fetch()) {
+                    ?>
+                        <div class="col-md-6 mb-4" id="new_job">
+                            <div class="h-100 p-5 bg-light border rounded-3" style="position: relative !important;">
+                                <div class="row">
+                                    <div class="col-md-2">LOGO</div>
+                                    <div class="col-md-10">
+                                        <a href="pages/view_job_post.php?job_id=<?= $job['id'] ?>" class="job_title">
+                                            <h2><?= $job['nom'] ?></h2>
+                                        </a>
+                                        <p class="text-muted"><?= $job['nom_entreprise'] ?></p>
+                                        <div class="border_bottom"></div>
+                                        <div class="salary">
+                                            <i class="bi bi-cash-coin fs-5 p-2"></i>
+                                            <span class="fs-5 salary"><?= $job['salaire'] ?></span>
+                                        </div>
+                                        <div class="compagny_adresse">
+                                            <i class="bi bi-geo-alt fs-5 p-2"></i>
+                                            <span class="fs-5"><?= $job['localisation'] ?></span>
+                                        </div>
+                                        <li class="job-type part-time"><?= $job['type'] ?></li>
+                                        <!-- <button class="btn btn-outline-secondary" type="button">Example button</button> -->
+                                        <div class="featured-label">
+                                            A la une
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+
+                    }
+                    ?>
+                <?php
                 }
                 ?>
 
